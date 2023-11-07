@@ -57,7 +57,7 @@ jobs:
         run: source /home/ansible/ansible_molecule/bin/activate
       
       - name: Change Dir 
-        run: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/
+        run: cd /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/
 
       - name: Run Molecule tests.
         run: molecule test 
