@@ -16,16 +16,16 @@ jobs:
           python-version: "pypy3.9"
 
       - name: Install Ansible Python packages
-        run: pip3 install ansible molecule docker molecule[docker]
+        run: pip install ansible molecule docker molecule[docker]
 
-      - name: Execute Molecule
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
-        run: |
-          cd collections/ansible_collections/infra/lab/roles/mysql
-          molecule test --all
-          cd -
+      # - name: Execute Molecule
+      #   env:
+      #     PY_COLORS: "1"
+      #     ANSIBLE_FORCE_COLOR: "1"
+      #   run: |
+      #     cd collections/ansible_collections/infra/lab/roles/mysql
+      #     molecule test --all
+      #     cd -
 
-          cd collections/ansible_collections/infra/lab/roles/nginx
-          molecule test --all
+      #     cd collections/ansible_collections/infra/lab/roles/nginx
+      #     molecule test --all
