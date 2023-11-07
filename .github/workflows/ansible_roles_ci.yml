@@ -46,13 +46,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install Python 3.9
-        uses: actions/setup-python@v4
-        with:
-          python-version: "pypy3.9"
+      # - name: Install Python 3.9
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: "pypy3.9"
 
-      - name: Install Ansible Python packages
-        run: pip3 install ansible molecule ansible-lint docker molecule[docker]
+      # - name: Install Ansible Python packages
+      #   run: pip3 install ansible molecule ansible-lint docker molecule[docker]
 
       - name: Run Molecule tests.
         run: molecule test --all
