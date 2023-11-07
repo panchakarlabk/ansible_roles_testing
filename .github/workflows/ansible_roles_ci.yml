@@ -54,7 +54,7 @@ jobs:
       # - name: Install Ansible Python packages
       #   run: pip3 install ansible molecule ansible-lint docker molecule[docker]
       - name: Changing virtuval Env
-        run: source ansible_molecule/bin/activate
+        run: source /home/ansible/ansible_molecule/bin/activate
 
       - name: Run Molecule tests.
         run: molecule test --all
