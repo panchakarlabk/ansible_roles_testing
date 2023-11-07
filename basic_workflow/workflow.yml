@@ -5,7 +5,7 @@ name: Molecule Tests on Push
 
 jobs:
   ansible_testing:
-    runs-on: ubuntu-latest
+    runs-on: rhel7
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
