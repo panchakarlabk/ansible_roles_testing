@@ -57,7 +57,7 @@ jobs:
         run: source /home/ansible/ansible_molecule/bin/activate
 
       - name: Run Molecule tests.
-        run: molecule test 
+        run: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/molecule test 
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
