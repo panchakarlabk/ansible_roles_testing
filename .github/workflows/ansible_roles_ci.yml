@@ -5,7 +5,7 @@ name: Molecule Testes on Push
 
 jobs:
   find_changed_roles:
-    runs-on: rhel7
+    runs-on: self-hosted 
 
     outputs:
       get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
@@ -34,7 +34,7 @@ jobs:
           echo "::set-output name=ansible_roles::$content"
 
   molecule_tests:
-    runs-on: rhel7
+    runs-on: self-hosted 
     needs: find_changed_roles
     # Skip there is no change in any roles. Example change in a README.md
     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
