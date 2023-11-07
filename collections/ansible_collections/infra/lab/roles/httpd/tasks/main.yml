@@ -1,5 +1,5 @@
 ---
-- name: Install httpd latest u
+- name: Install httpd latest ua
   yum:
     name: 'httpd'
     state: latest
