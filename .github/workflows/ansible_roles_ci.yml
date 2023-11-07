@@ -1,0 +1,62 @@
+name: Molecule Testes on Push
+
+"on":
+  push:
+
+jobs:
+  find_changed_roles:
+    runs-on: ubuntu-latest
+
+    outputs:
+      get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Get Changed Files
+        id: get_changed
+        run: echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r HEAD | xargs)"
+
+      - name: Get Changed Roles
+        id: get_changed_roles
+        run: echo "::set-output name=roles::$(for i in ${{ steps.get_changed.outputs.files }} ; do echo $i | grep '/roles/' | awk -F '/' '{print $1 "/" $2 "/" $3 "/" $4 "/" $5 "/" $6 }'; done | sort | uniq | xargs )"
+
+      - name: Format, so GitHub Actions can list over an output list
+        id: get_changed_paths
+        run: |
+          content="[$(for l in ${{ steps.get_changed_roles.outputs.roles }} ; do echo \"$l\",; done )]"
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo "::set-output name=ansible_roles::$content"
+
+  molecule_tests:
+    runs-on: ubuntu-latest
+    needs: find_changed_roles
+    # Skip there is no change in any roles. Example change in a README.md
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+    strategy:
+      matrix:
+        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "pypy3.9"
+
+      - name: Install Ansible Python packages
+        run: pip3 install ansible molecule ansible-lint docker molecule[docker]
+
+      - name: Run Molecule tests.
+        run: molecule test --all
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+        working-directory: ${{ matrix.value }}

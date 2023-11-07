@@ -1,0 +1,31 @@
+name: Molecule Tests on Push
+
+"on":
+  push:
+
+jobs:
+  ansible_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "pypy3.9"
+
+      - name: Install Ansible Python packages
+        run: pip3 install ansible molecule docker molecule[docker]
+
+      - name: Execute Molecule
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+        run: |
+          cd collections/ansible_collections/infra/lab/roles/mysql
+          molecule test --all
+          cd -
+
+          cd collections/ansible_collections/infra/lab/roles/nginx
+          molecule test --all
