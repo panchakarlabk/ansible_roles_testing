@@ -54,13 +54,9 @@ jobs:
       # - name: Install Ansible Python packages
       #   run: pip3 install ansible molecule ansible-lint docker molecule[docker]
      
-    
       - name: Change Dir 
         run: cd /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/
-      
-      # - name: Run Ansibel Lint tests
-      #   run: ansible-lint
-
+ 
       - name: Changing virtuval Env
         run: source /home/ansible/ansible_molecule/bin/activate
 
@@ -69,5 +65,5 @@ jobs:
         # env:
         #   PY_COLORS: "1"
         #   ANSIBLE_FORCE_COLOR: "1"
-        working-directory: '/home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/'
+        #working-directory: '/home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/'
         #working-directory: ${{ matrix.value }}
