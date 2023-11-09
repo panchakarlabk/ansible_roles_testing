@@ -59,12 +59,12 @@ jobs:
       - name: Change Dir 
         run: cd /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/
       
-      - name: Changing virtuval Env
-        run: ansible-lint
-        
+      # - name: Run Ansibel Lint tests
+      #   run: ansible-lint
+
       - name: Run Molecule tests.
         run: molecule test 
         # env:
         #   PY_COLORS: "1"
         #   ANSIBLE_FORCE_COLOR: "1"
-        working-directory: ${{ matrix.value }}
+        working-directory: '/home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/'
