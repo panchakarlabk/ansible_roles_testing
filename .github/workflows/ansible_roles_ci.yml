@@ -55,10 +55,13 @@ jobs:
       #   run: pip3 install ansible molecule ansible-lint docker molecule[docker]
       - name: Changing virtuval Env
         run: source /home/ansible/ansible_molecule/bin/activate
-      
+    
       - name: Change Dir 
         run: cd /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/
-
+      
+      - name: Changing virtuval Env
+        run: ansible-lint
+        
       - name: Run Molecule tests.
         run: molecule test 
         # env:

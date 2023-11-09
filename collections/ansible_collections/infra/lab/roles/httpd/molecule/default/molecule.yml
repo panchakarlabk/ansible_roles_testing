@@ -7,7 +7,7 @@ driver:
   name: podman
 platforms:
   - name: centos_os
-    image: docker.io/geerlingguy/docker-centos8-ansible
+    image: quay.io/centos/centos:stream8
 verifier:
   name: ansible
 lint: |
