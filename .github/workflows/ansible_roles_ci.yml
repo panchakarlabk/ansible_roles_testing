@@ -66,4 +66,4 @@ jobs:
         #   PY_COLORS: "1"
         #   ANSIBLE_FORCE_COLOR: "1"
         # working-directory: '/home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/'
-        #working-directory: ${{ matrix.value }}
+        working-directory: ${{ matrix.value }}
