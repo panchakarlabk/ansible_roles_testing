@@ -1,0 +1,10 @@
+---
+- name: testing molecule ping role
+  hosts: localhost
+  gather_facts: false
+  #become: true
+  tasks:
+    - name: Testing role
+      include_role:
+        name: /home/ansible/test/ping/
+        tasks_from: main.yml

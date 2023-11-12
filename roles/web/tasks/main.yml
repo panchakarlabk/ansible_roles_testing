@@ -1,0 +1,11 @@
+---
+# tasks file for Httpd
+- name: Install httpd
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+
+- name: Install httpd copy
+  ansible.builtin.yum:
+    name: nginx
+    state: latest

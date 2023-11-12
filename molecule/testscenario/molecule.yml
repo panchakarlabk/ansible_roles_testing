@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+provisioner:
+  name: ansible
+driver:
+  name: podman
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: centos_os
+    image: docker.io/geerlingguy/docker-centos8-ansible 
+verifier:
+  name: ansible
