@@ -22,7 +22,7 @@ jobs:
 
       - name: Get Changed Roles
         id: get_changed_roles
-        run: echo "::set-output name=roles::$(for i in ${{ steps.get_changed.outputs.files }} ; do echo $i | grep '/roles/' | awk -F '/' '{print $1 }'; done | sort | uniq | xargs )"
+        run: echo "::set-output name=roles::$(for i in ${{ steps.get_changed.outputs.files }} ; do echo $i | grep '/roles/' | awk -F '/' '{print $1 "/" }'; done | sort | uniq | xargs )"
 
       - name: Format, so GitHub Actions can list over an output list
         id: get_changed_paths
