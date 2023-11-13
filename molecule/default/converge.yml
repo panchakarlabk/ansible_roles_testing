@@ -6,5 +6,5 @@
   tasks:
     - name: Testing Web Httpd role
       ansible.builtin.include_role:
-        name: /home/ansible/test/web/
+        name: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/
         tasks_from: main.yml
