@@ -28,9 +28,6 @@ jobs:
         id: get_changed_paths
         run: |
           content="[$(for l in ${{ steps.get_changed_roles.outputs.roles }} ; do echo \"$l\",; done )]"
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
           echo "::set-output name=ansible_roles::$content"
 
   molecule_tests:
