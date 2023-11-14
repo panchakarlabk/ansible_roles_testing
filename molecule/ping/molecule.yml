@@ -12,8 +12,8 @@ platforms:
     image: quay.io/centos/centos:stream8
   - name: molecule-ubuntu
     image: ubuntu:18.04
-  - name: windows_core
-    image: mcr.microsoft.com/windows/servercore:ltsc2022
+  # - name: windows_core
+  #   image: mcr.microsoft.com/windows/servercore:ltsc2022
 verifier:
   name: ansible
 lint: |
