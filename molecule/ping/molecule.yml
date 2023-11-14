@@ -5,6 +5,9 @@ dependency:
     requirements-file: requirements.yml
 provisioner:
   name: ansible
+  log: true
+  lint:
+    name: ansible-lint
 driver:
   name: podman
 platforms:

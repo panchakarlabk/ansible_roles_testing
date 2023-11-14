@@ -1,2 +1,2 @@
-- name: Connectivity Test ping to Target server name
+- name: Connectivity Test ping to Target server Name
   command: "ping -c 1 -W 3 {{Server}}" 
