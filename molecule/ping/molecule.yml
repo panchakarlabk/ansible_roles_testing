@@ -15,7 +15,7 @@ platforms:
   - name: windows_core
     image: mcr.microsoft.com/windows/servercore:ltsc2022
 verifier:
-  name: Verify
+  name: ansible
 lint: |
   set -e
   yamllint .
