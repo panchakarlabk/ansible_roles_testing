@@ -1,10 +1,10 @@
 ---
 - name: Include a role from a collection
-  hosts: all
+  hosts: centos_os
   gather_facts: false
   #become: true
   tasks:
-    - name: Testing Web Httpd role
+    - name: Testing Httpd role
       ansible.builtin.include_role:
         name: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/roles/httpd/tasks/
         tasks_from: main.yml

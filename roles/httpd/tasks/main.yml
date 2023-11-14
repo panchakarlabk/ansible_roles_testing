@@ -1,5 +1,5 @@
 ---
-- name: Install httpd latest Update Httped  aadedd   aaa
+- name: Install httpd latest Update Httped 
   yum:
     name: 'httpd'
     state: latest
