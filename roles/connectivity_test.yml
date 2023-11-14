@@ -1,0 +1,5 @@
+- name: 'connectivity_test'
+  hosts: "{{ targets }}"
+  gather_facts: false
+  roles:
+   - { role: ./roles/ping}
