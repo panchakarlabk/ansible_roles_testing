@@ -1,3 +1,14 @@
 ---
 - name: Include a playbook from a collection
   ansible.builtin.import_playbook: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/connectivity_test.yml
+
+# ---
+# - name: Include a role from a collection
+#   hosts: centos_os
+#   gather_facts: false
+#   #become: true
+#   tasks:
+#     - name: Testing Httpd role
+#       ansible.builtin.include_role:
+#         name: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/roles/ping/
+#         tasks_from: main.yml

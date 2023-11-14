@@ -2,6 +2,6 @@
   hosts: all
   gather_facts: false
   roles:
-   - { role: ./roles/ping}
+  #  - { role: ./roles/ping}
    - { role: ./roles/httpd}
    - { role: ./roles/nginx}
