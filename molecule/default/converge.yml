@@ -1,10 +1,6 @@
 ---
-- name: Include a role from a collection
+- name: Converge
   hosts: all
-  gather_facts: false
-  #become: true
-  tasks:
-    - name: Testing Web Httpd role
-      ansible.builtin.include_role:
-        name: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/roles/httpd/tasks/
-        tasks_from: main.yml
+  roles:
+    - httpd
+
