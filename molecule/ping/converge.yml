@@ -1,6 +1,6 @@
 ---
 - name: testing molecule ping role
-  hosts: localhost
+  hosts: centos_os
   gather_facts: false
   #become: true
   tasks:
