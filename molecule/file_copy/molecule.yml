@@ -1,16 +1,20 @@
 ---
 dependency:
   name: galaxy
+  options:
+    requirements-file: requirements.yml
 provisioner:
   name: ansible
 driver:
   name: podman
+platforms:
+  - name: centos_os
+    image: quay.io/centos/centos:stream8
+  - name: molecule-ubuntu
+    image: ubuntu:18.04
+verifier:
+  name: ansible
 lint: |
   set -e
   yamllint .
   ansible-lint
-platforms:
-  - name: centos_os
-    image: docker.io/geerlingguy/docker-centos8-ansible 
-verifier:
-  name: ansible

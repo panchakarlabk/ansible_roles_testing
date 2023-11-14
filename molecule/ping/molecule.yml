@@ -1,6 +1,8 @@
 ---
 dependency:
   name: galaxy
+  options:
+    requirements-file: requirements.yml
 provisioner:
   name: ansible
 driver:
@@ -8,6 +10,8 @@ driver:
 platforms:
   - name: centos_os
     image: quay.io/centos/centos:stream8
+  - name: molecule-ubuntu
+    image: ubuntu:18.04
 verifier:
   name: ansible
 lint: |
