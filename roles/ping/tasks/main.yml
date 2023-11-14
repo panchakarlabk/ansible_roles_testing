@@ -1,2 +1,5 @@
-- name: Example from an Ansible Playbook Ping  aaa  
-  ping:
+# - name: Example from an Ansible Playbook Ping  aaa  
+#   ping:
+- name: Connectivity Test Test ping to Target Server (IP)
+  command: "ping -c 1 -W 3 {{Server}}" 
+
