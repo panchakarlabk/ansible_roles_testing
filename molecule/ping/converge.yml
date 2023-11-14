@@ -6,5 +6,5 @@
   tasks:
     - name: Testing role
       include_role:
-        name: /home/ansible/test/ping/
+        name: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/roles/ping/
         tasks_from: main.yml

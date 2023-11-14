@@ -1,12 +1,12 @@
 ---
 # tasks file for testko-role
 
-- name: "copy file in /file.txt"
+- name: "copy file in /file.txt test"
   copy:
     src: file.txt
     dest: "{{ file_dest }}"
 
-- name: "copy file in /file.txt"
+- name: "copy file in /file.txt test"
   copy:
     src: file.txt
     dest: "{{ file_dest}}"

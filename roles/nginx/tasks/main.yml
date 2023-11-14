@@ -1,5 +1,5 @@
 ---
 - name: Upgrade all packages all
   yum:
-    name: '*'
+    name: 'nginx'
     state: latest
