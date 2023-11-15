@@ -1,5 +1,5 @@
 # Windows
-- name: Launch the connectivity test for Windows
+- name: Launch the connectivity test for Windows  
   include_tasks: conn_test_win.yml
 
 # Linux
