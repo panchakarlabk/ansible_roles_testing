@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+provisioner:
+  name: ansible
+  log: true
+  lint:
+    name: ansible-lint
+driver:
+  name: podman
+platforms:
+  - name: centos_os
+    image: quay.io/centos/centos:stream8
+  - name: molecule-ubuntu
+    image: ubuntu:18.04
+  # - name: windows_core
+  #   image: mcr.microsoft.com/windows/servercore:ltsc2022
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint

@@ -1,0 +1,9 @@
+---
+# This is an example playbook to execute Ansible tests.
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Connectivity Test ping to Target Server (IP)
+      command: "ping -c 1 -W 3 centos_os" 
