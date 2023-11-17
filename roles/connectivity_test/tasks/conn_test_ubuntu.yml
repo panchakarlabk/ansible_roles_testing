@@ -1,5 +1,2 @@
-# - name: Login to Target server centos_os"
-#   command: "podman exec -it molecule-ubuntu /bin/bash" 
-
 - name: Connectivity Test ping to Target server Unix molecule-ubuntu"
-  command: "ping -c 1 -W 3 {{ Server }}" 
+  command: "podman exec -it molecule-ubuntu ping -c 1 -W 3 {{ Server }}" 

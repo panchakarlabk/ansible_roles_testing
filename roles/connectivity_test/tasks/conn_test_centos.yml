@@ -1,6 +1,3 @@
-- name: Login to Target server centos_os"
-  command: "podman exec -it centos_os /bin/bash" 
-
 - name: Connectivity Test ping to Target server centos_os"
-  command: "ping -c 1 -W 3  {{ Server }}" 
+  command: "podman exec -it centos_os ping -c 1 -W 3 centos_os " 
   
