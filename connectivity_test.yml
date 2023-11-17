@@ -1,5 +1,5 @@
 - name: 'connectivity_test'
-  hosts: all
+  hosts: localhost
   gather_facts: false
   roles:
    - { role: ./roles/connectivity_test}
