@@ -1,8 +1,11 @@
 # Windows
-- name: Launch the connectivity test for Windows  
-  include_tasks: conn_test_win.yml
+- name: Launch the connectivity test for centos_os  
+  include_tasks: conn_test_win_centos.yml
 
 # Linux
-- name: Launch the connectivity test for unix
-  include_tasks: conn_test_unx.yml
+- name: Launch the connectivity test for molecule-ubuntu
+  include_tasks: conn_test_unx_ubuntu.yml
 
+# Linux ubi8
+- name: Launch the connectivity test for unix ubi8
+  include_tasks: conn_test_unx_ubi8.yml

@@ -1,0 +1,2 @@
+- name: Connectivity Test ping to Target server centos_os"
+  command: "ping -c 1 -W 3  centos_os" 

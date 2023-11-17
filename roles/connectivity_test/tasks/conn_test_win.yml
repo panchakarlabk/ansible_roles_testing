@@ -1,2 +1,0 @@
-- name: Connectivity Test ping to Target server  Windows "{{Server}}"
-  command: "ping -c 1 -W 3 {{Server}}" 
