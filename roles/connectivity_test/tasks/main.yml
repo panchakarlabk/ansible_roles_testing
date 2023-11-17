@@ -1,6 +1,6 @@
 # Windows
 - name: Launch the connectivity test for centos_os  
-  include_tasks: conn_test_win_centos.yml
+  include_tasks: conn_test_centos.yml
 
 # Linux
 - name: Launch the connectivity test for molecule-ubuntu
