@@ -1,5 +1,5 @@
-- name: Login to Target server centos_os"
-  command: "podman exec -it ubi8 /bin/bash" 
+# - name: Login to Target server centos_os"
+#   command: "podman exec -it ubi8 /bin/bash" 
 
 - name: Connectivity Test ping to Target server Unix ubi"
   command: "ping -c 1 -W 3 {{ Server }}" 
