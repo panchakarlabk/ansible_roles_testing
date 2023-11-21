@@ -1,3 +1,7 @@
+# jump host
+- name: Launch the connectivity test for Jump Host  
+  include_tasks: conn_test_jumphost.yml
+
 # Windows
 - name: Launch the connectivity test for centos_os  
   include_tasks: conn_test_centos.yml
