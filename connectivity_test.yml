@@ -1,5 +1,5 @@
 - name: 'connectivity_test'
-  hosts: localhost
+  hosts: centos_os
   gather_facts: false
   roles:
    - { role: ./roles/connectivity_test}
