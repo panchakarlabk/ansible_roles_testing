@@ -1,0 +1,13 @@
+- name: 'connectivity_test'
+  hosts: localhost
+  gather_facts: false
+  vars:
+    ansible_ssh_user: "bharat"
+    ansible_ssh_pass: "8612"
+    ansible_ssh_port: "5985"
+    ansible_connection: "winrm"
+    ansible_winrm_server_cert_validation: ignore
+  roles:
+   - { role: ./roles/connectivity_windows}
+  #  - { role: ./roles/httpd}
+  #  - { role: ./roles/nginx}

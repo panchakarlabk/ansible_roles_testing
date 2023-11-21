@@ -1,0 +1,3 @@
+# jump host windows
+- name: Ping Windows Hosts Server
+  win_ping:
