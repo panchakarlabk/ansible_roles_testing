@@ -1,3 +1,3 @@
 # jump host windows
-- name: Ping Windows Hosts Server
+- name: Connectivity Test Windows jumphost
   win_ping:
