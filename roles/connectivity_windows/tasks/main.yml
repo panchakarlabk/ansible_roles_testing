@@ -1,3 +1,3 @@
 # jump host windows
 - name: Connectivity Test Windows jumphost
-  ansible.builtin_win_ping:
+  ansible.builtin.win_ping:
