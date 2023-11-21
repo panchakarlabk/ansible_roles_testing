@@ -1,5 +1,5 @@
 - name: 'connectivity_test'
-  hosts: localhost
+  hosts: BharatKumar
   gather_facts: false
   vars:
     ansible_ssh_user: "bharat"
