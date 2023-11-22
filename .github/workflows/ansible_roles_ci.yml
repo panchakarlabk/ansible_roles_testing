@@ -56,6 +56,9 @@ jobs:
  
       - name: Changing virtuval Env
         run: source /home/ansible/ansible_molecule/bin/activate
+      
+      - name: pwd
+        run: pwd
 
       - name: Run Molecule tests
         run: molecule test -s conn_test
