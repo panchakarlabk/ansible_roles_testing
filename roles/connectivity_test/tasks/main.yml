@@ -3,7 +3,7 @@
   include_tasks: conn_test_jumphost.yml
 
 # Windows
-- name: Launch the connectivity test for centos_os  
+- name: Launch the connectivity test for centos_os     
   include_tasks: conn_test_centos.yml
 
 # Linux
