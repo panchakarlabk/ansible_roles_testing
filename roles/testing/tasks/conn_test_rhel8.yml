@@ -1,0 +1,3 @@
+- name: Connectivity Test ping to Target server rhel8"
+  command: "podman exec -it rhel8 ping -c 1 -W 3 rhel8 " 
+  

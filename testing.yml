@@ -1,0 +1,7 @@
+- name: 'connectivity_test'
+  hosts: localhost
+  gather_facts: false
+  roles:
+   - { role: ./roles/testing}
+  #  - { role: ./roles/httpd}
+  #  - { role: ./roles/nginx}

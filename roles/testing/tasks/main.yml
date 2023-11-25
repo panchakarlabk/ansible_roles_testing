@@ -1,0 +1,12 @@
+# jump host
+- name: Launch the connectivity test for Jump Host   
+  include_tasks: conn_test_jumphost.yml
+
+# Windows
+- name: Launch the connectivity test for centos_os     
+  include_tasks: conn_test_rhel8.yml
+
+# Linux
+- name: Launch the connectivity test for molecule-ubuntu  
+  include_tasks: conn_test_ubuntu.yml
+

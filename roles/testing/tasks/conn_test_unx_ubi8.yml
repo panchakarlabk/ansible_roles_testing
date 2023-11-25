@@ -1,0 +1,2 @@
+- name: Connectivity Test ping to Target server Unix ubi8"
+  command: "podman exec -it ubi8 ping -c 1 -W 3 {{ Server }}" 
