@@ -1,6 +1,7 @@
 - name: 'connectivity_test'
   hosts: localhost
   gather_facts: false
+  become: true
   roles:
    - { role: ./roles/httpd}
   #  - { role: ./roles/httpd}
