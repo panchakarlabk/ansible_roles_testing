@@ -6,4 +6,4 @@
 
   tasks:
     - name: Connectivity Test ping to Target Server (IP)
-      command: "podman exec -it centos_os ping -c 1 -W 3 centos_os" 
+      command: "podman exec -it rhel8 ping -c 1 -W 3 rhel8" 
