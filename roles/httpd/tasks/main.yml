@@ -1,6 +1,6 @@
 ---
-- name: Install httpd latest Update Httped aa
-  yum:
-    name: 'httpd'
-    state: latest
-
+# tasks file for mywebapp
+- name: Ensure httpd installed
+  package:
+    name: "httpd"
+    state: present

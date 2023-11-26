@@ -1,0 +1,3 @@
+---
+# defaults file for testko-role
+file_dest: /file.txt
