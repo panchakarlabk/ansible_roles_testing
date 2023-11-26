@@ -1,6 +1,6 @@
 ---
 - name: Include a playbook from a collection
-  ansible.builtin.import_playbook: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/testing.yml
+  ansible.builtin.import_playbook: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/httpd.yml
 
 # ---
 # - name: Include a role from a collection
