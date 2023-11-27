@@ -1,6 +1,8 @@
 ---
 - name: Include a playbook from a collection
   ansible.builtin.import_playbook: /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/httpd.yml
+  vars:
+         web_content: "New content for testing only"
 
 # ---
 # - name: Include a role from a collection
