@@ -4,7 +4,7 @@
 - name: Verify
   hosts: all
   vars:
-    expected_content: "There's a web server here"
+    expected_content: "New content for testing only"
   tasks:
   - name: Get index.html
     uri:
