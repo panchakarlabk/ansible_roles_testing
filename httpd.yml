@@ -1,6 +1,6 @@
-- name: 'connectivity_test'
+- name: 'httpd Install playbook'
   hosts: all
-  gather_facts: false
+  gather_facts: true
   become: true
   roles:
    - { role: ./roles/httpd}
