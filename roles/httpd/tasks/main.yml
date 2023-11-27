@@ -3,4 +3,5 @@
 - name: Ensure httpd installed
   package:
     name: "httpd"
-    state: present
+    state: latest
+  become: true
