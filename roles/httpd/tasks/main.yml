@@ -11,3 +11,11 @@
   package:
     name: "{{ httpd_package }}"
     state: present
+
+- name: Ensure HTML Index
+  copy:
+    dest: /var/www/html/index.html
+    mode: 0644
+    owner: root
+    group: "{{ httpd_group }}"
+    content: "{{ web_content }}"
