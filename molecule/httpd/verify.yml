@@ -1,9 +1,23 @@
 ---
 # This is an example playbook to execute Ansible tests.
+ 
 - name: Verify
   hosts: all
-  gather_facts: false
-
+  vars:
+    expected_content: "There's a web server here"
   tasks:
-    - name: Connectivity Test ping to Target Server (IP)
-      command: "podman exec -it rhel8 ping -c 1 -W 3 rhel8" 
+  - name: Get index.html
+    uri:
+      url: http://localhost
+      return_content: yes
+    register: this
+    failed_when: "expected_content not in this.content"
+ 
+  - name: Ensure content type is text/html
+    assert:
+      that:
+      - "'text/html' in this.content_type"
+ 
+  - name: Debug results
+    debug:
+      var: this.content
