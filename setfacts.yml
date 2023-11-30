@@ -1,5 +1,5 @@
 - name: 'setfatsc Install playbook'
-  hosts: rhel8
+  hosts: all
   gather_facts: true
   roles:
    - { role: ./roles/setfacts}

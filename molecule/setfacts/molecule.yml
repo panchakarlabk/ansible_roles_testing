@@ -11,16 +11,8 @@ provisioner:
 driver:
   name: podman
 platforms:
-  - name: centos_os
-    image: quay.io/centos/centos:stream8
-  - name: molecule-ubuntu
-    image: ubuntu:18.04
-  # - name: windows_core
-  #   image: mcr.microsoft.com/windows/servercore:ltsc2022
   - name: ubi8
     image: registry.access.redhat.com/ubi8/ubi
-  # - name: ee-supported-rhel8
-  #   image: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8
 verifier:
   name: ansible
 lint: |
