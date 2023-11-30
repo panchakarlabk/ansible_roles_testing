@@ -1,2 +1,3 @@
 ---
 # vars file for ping
+report_file: test.csv

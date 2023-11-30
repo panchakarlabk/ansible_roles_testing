@@ -10,10 +10,6 @@
   delegate_to: localhost
   run_once: True
 
-- name: 'Set report working directory'
-  set_fact:
-    report_file: "test.csv"
-
 - name: Final report name
   set_fact:
     header: "\
