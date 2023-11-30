@@ -1,6 +1,6 @@
- - name: 'Set report working directory'
-   set_fact:
-     report_file: "test.csv"
+- name: 'Set report working directory'
+  set_fact:
+    report_file: "test.csv"
 
 - name: Final report name
   set_fact:
