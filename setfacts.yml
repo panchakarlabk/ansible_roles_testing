@@ -1,6 +1,5 @@
 - name: 'setfacts Install playbook'
   hosts: all
   gather_facts: true
-  become: yes
   roles:
    - { role: ./roles/setfacts}
