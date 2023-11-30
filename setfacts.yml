@@ -1,0 +1,5 @@
+- name: 'httpd Install playbook'
+  hosts: all
+  gather_facts: true
+  roles:
+   - { role: ./roles/setfacts}

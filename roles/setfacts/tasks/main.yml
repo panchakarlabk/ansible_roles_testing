@@ -1,0 +1,3 @@
+ - name: 'Set report working directory'
+      set_fact:
+        report_file: "test.csv"
