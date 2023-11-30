@@ -2,6 +2,13 @@
 # tasks file for connectivity-test
 - debug: msg=""{{ hostvars['localhost'] }}""
 
+- name : Set fact added 
+  ansible.builtin.set_fact: 
+    base_dir: "rhel8"
+  delegate_to: local
+
+- debug: msg="{{ hostvars[inventory_hostname]['base_dir'] }}"
+
 - name: Ensure BASEDIR folder is present
   file:
     path: "{{ hostvars['localhost']['base_dir'] }}"
