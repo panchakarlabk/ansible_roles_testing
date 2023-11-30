@@ -1,6 +1,6 @@
 ---
 # tasks file for connectivity-test
-- debug: msg="{{ hostvars['rhel8'] }}"
+- debug: msg="{{ hostvars['localhost'] }}"
 
 - name: Ensure BASEDIR folder is present
   file:
