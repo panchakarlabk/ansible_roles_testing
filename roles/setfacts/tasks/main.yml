@@ -4,7 +4,7 @@
 
 - name: Ensure BASEDIR folder is present
   file:
-    path: "{{ hostvars['localhost']['base_dir'] }}"
+    path: "/"
 #    path: "{{ base_dir }}"
     state: directory
   delegate_to: localhost
