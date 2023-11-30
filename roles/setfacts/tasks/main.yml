@@ -1,10 +1,10 @@
 ---
 # tasks file for connectivity-test
-- debug: msg="{{ hostvars['localhost'] }}"
+- debug: msg=""{{ hostvars['localhost']['base_dir'] }}""
 
 - name: Ensure BASEDIR folder is present
   file:
-    path: "/"
+    path: "{{ hostvars['localhost']['base_dir'] }}"
 #    path: "{{ base_dir }}"
     state: directory
   delegate_to: localhost
