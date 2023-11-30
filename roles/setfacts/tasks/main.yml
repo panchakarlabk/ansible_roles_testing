@@ -1,3 +1,13 @@
+---
+# tasks file for connectivity-test
+- name: Ensure BASEDIR folder is present
+  file:
+    path: "{{ hostvars['localhost']['base_dir'] }}"
+#    path: "{{ base_dir }}"
+    state: directory
+  delegate_to: localhost
+  run_once: True
+
 - name: 'Set report working directory'
   set_fact:
     report_file: "test.csv"
