@@ -1,3 +1,48 @@
  - name: 'Set report working directory'
    set_fact:
      report_file: "test.csv"
+
+- name: Final report name
+  set_fact:
+    header: "\
+    TIMESTAMP;\
+    HOSTNAME;\
+    ANSIBLE_HOST;\
+    SHORTNAME;\
+    DOMAIN;\
+    OSVERSION;\
+    WIN_TYPE;\
+    EP_USER;\
+    EP_IP;\
+    JH_NAME;\
+    JH_CONN;\
+    NSLOOKUP;\
+    PING_DNS;\
+    PING_IP;\
+    PORT;\
+    USER;\
+    PYTHON-PS;\
+    PYTHON-PS_VER;\
+    MODULE;\
+    OSNAME;\
+    ADMIN;\
+    NEXUS_PORT;\
+    NEXUS_SVC;\
+    HOST_CHK;\
+    FQDN_CHK;\
+    REQ_CHK;\
+    OS_CHECK;\
+    ANSIBLE_RUN;\
+    STATUS;\
+    RESULTS;\
+    DETAILS"
+  run_once: True
+
+- name: Initialize results file with header
+  local_action:
+    module: copy
+    dest: "{{ report_file }}"
+#    dest: "{{ base_dir }}/{{ report_file }}"
+    content: "{{ header }}\n"
+  delegate_to: localhost
+  run_once: True
