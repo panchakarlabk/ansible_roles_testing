@@ -1,9 +1,10 @@
 ---
 # This is an example playbook to execute Ansible tests.
 - name: Verify
-  hosts: centos_os
-  gather_facts: false
+  hosts: rhel8
+  gather_facts: true
 
   tasks:
-    - name: Connectivity Test ping to Target Server (IP)
-      command: "podman exec -it centos_os ping -c 1 -W 3 centos_os" 
+     - name: 'Set report working directory'
+       set_fact:
+         report_file: "test.csv"

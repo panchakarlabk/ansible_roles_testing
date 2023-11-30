@@ -1,5 +1,5 @@
-- name: 'httpd Install playbook'
-  hosts: rhel8
+- name: 'setfatsc Install playbook'
+  hosts: all
   gather_facts: true
   roles:
    - { role: ./roles/setfacts}
