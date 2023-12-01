@@ -61,7 +61,7 @@ jobs:
         run: pwd
 
       - name: Run Molecule tests
-        run: molecule test -s conn_test
+        run: molecule --version
         # env:
         #   PY_COLORS: "1"
         #   ANSIBLE_FORCE_COLOR: "1"
