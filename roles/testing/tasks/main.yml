@@ -1,5 +1,5 @@
 # jump host
-- name: Launch the connectivity test for Jump Host  change  
+- name: Launch the connectivity test for Jump Host  change
   include_tasks: conn_test_jumphost.yml
 
 # Windows
