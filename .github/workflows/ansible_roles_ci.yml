@@ -60,6 +60,9 @@ jobs:
       - name: pwd
         run: pwd
 
+      - name: ansible lint
+        run: ansible-lint
+
       - name: Run Molecule tests
         run: molecule --version
         # env:
