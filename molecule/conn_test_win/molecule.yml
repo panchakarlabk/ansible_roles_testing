@@ -41,6 +41,10 @@ provisioner:
       all:
         vars:
           hostname: testing
-          ...
 verifier:
   name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
