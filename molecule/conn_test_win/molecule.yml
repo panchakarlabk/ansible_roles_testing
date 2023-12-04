@@ -1,0 +1,46 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+    ignore-errors: True
+driver:
+  name: vagrant
+platforms:
+  - name: windows-generic-server
+    box: trueability/windows-server-2019
+    memory: 4096
+    groups:
+      - windows
+    interfaces:
+      - network_name: public_network
+      - network_name: private_network
+        ip: "10.0.1.17"
+    provider_options:
+      gui: false
+      linked_clone: true
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: ./prepare.yml
+  ansible_args:
+    - -vvvvv
+  connection_options:
+    ansible_connection: winrm
+    ansible_host: 10.0.1.17
+    ansible_port: 5985
+  inventory:
+    group_vars:
+      windows:
+        ansible_winrm_transport: basic
+        ansible_password: vagrant
+        #ansible_winrm_scheme: http
+        #ansible_winrm_transport: kerberos
+        #ansible_winrm_kerberos_delegation: yes
+    hosts:
+      all:
+        vars:
+          hostname: testing
+          ...
+verifier:
+  name: ansible
