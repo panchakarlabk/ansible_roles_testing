@@ -64,7 +64,7 @@ jobs:
         run: ansible-lint
 
       - name: Run Molecule tests
-        run: molecule --version
+        run: molecule test -s ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
         # env:
         #   PY_COLORS: "1"
         #   ANSIBLE_FORCE_COLOR: "1"
