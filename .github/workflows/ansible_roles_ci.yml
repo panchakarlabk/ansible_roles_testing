@@ -40,7 +40,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-  Ansible_Lint_Fix_Qa_Branch:
+  Ansible_Lint_Fix_Prod_Branch:
     runs-on: self-hosted 
     needs: Ansible_Lint_Fix_Qa_Branch
     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
