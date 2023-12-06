@@ -6,7 +6,6 @@ name: Ansible Lint test
 jobs:
   Finding_Ansible_Lint_Isuses:
     runs-on: self-hosted 
-
     outputs:
       get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
 
@@ -20,6 +19,7 @@ jobs:
   Ansible_Lint_Fix:
     runs-on: self-hosted 
     needs: Finding_Ansible_Lint_Isuses
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
     strategy:
       matrix:
         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
@@ -31,7 +31,7 @@ jobs:
   Ansible_Lint_Fix_Qa_Branch:
     runs-on: self-hosted 
     needs: Ansible_Lint_Fix
-  
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
     strategy:
       matrix:
         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
@@ -43,6 +43,7 @@ jobs:
   Ansible_Lint_Fix_Qa_Branch:
     runs-on: self-hosted 
     needs: Ansible_Lint_Fix_Qa_Branch
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
     strategy:
       matrix:
         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
