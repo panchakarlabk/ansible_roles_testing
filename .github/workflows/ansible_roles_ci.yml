@@ -4,7 +4,7 @@ name: Ansible Lint test
   push:
 
 jobs:
-  Finding Ansible Lint Isuses:
+  Finding_Ansible_Lint_Isuses:
     runs-on: self-hosted 
 
     outputs:
@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 2
 
       
-  Ansible Lint Fix:
+  Ansible_Lint_Fix:
     runs-on: self-hosted 
-  
+    needs: Finding_Ansible_Lint_Isuses
     strategy:
       matrix:
         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
@@ -28,8 +28,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
   
-  Ansible Lint Fix QU Branch:
+  Ansible_Lint_Fix_Qa_Branch:
     runs-on: self-hosted 
+    needs: Ansible_Lint_Fix
   
     strategy:
       matrix:
@@ -39,9 +40,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-  FInal Merge to Prod Branch:
+  Ansible_Lint_Fix_Qa_Branch:
     runs-on: self-hosted 
-  
+    needs: Ansible_Lint_Fix_Qa_Branch
     strategy:
       matrix:
         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
