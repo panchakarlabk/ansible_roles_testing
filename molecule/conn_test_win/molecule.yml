@@ -1,50 +1,27 @@
 ---
 dependency:
   name: galaxy
-  options:
-    requirements-file: requirements.yml
-    ignore-errors: True
 driver:
-  name: vagrant
+  name: docker
 platforms:
-  - name: windows-generic-server
-    box: trueability/windows-server-2019
-    memory: 4096
-    groups:
-      - windows
-    interfaces:
-      - network_name: public_network
-      - network_name: private_network
-        ip: "10.0.1.17"
-    provider_options:
-      gui: false
-      linked_clone: true
+  - name: instance
+    image: mcr.microsoft.com/windows:ltsc2019
+    docker_host: 'tcp://192.168.0.27:2375'
+    command: "powershell 'while (1 -eq 1) {Start-Sleep -s 1000}'"
+    exposed_ports: ["5985","5986"]
+    published_ports: ["5985:5985","5986:5986"]
+    pre_build_image: true
 provisioner:
   name: ansible
-  playbooks:
-    prepare: ./prepare.yml
-  ansible_args:
-    - -vvvvv
-  connection_options:
-    ansible_connection: winrm
-    ansible_host: 10.0.1.17
-    ansible_port: 5985
   inventory:
-    group_vars:
-      windows:
-        ansible_winrm_transport: basic
-        ansible_password: vagrant
-        #ansible_winrm_scheme: http
-        #ansible_winrm_transport: kerberos
-        #ansible_winrm_kerberos_delegation: yes
-    hosts:
-      all:
-        vars:
-          hostname: testing
+    host_vars:
+      instance:
+        ansible_user: 'bharat'
+        ansible_password: '8612'
+        ansible_connection: winrm
+        ansible_winrm_port: '5985'
+        ansible_winrm_scheme: 'http'
+        ansible_winrm_server_cert_validation: 'ignore'
+        ansible_host: '192.168.0.27'
 verifier:
-  name: ansible
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
-
+  name: inspec
