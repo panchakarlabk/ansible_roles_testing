@@ -1,0 +1,21 @@
+---
+dependency:
+  name: galaxy
+  options:
+    requirements-file: requirements.yml
+provisioner:
+  name: ansible
+  log: true
+  lint:
+    name: ansible-lint
+driver:
+  name: docker
+platforms:
+  - name: molecule-ubuntu
+    image: ubuntu:18.04
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
