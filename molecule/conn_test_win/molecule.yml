@@ -1,27 +1,57 @@
 ---
 dependency:
   name: galaxy
+  options:
+    requirements-file: requirements.yml
+provisioner:
+  name: ansible
+  log: true
+  lint:
+    name: ansible-lint
 driver:
   name: docker
 platforms:
-  - name: instance
-    image: mcr.microsoft.com/windows:ltsc2019
-    docker_host: 'tcp://192.168.0.27:2375'
-    command: "powershell 'while (1 -eq 1) {Start-Sleep -s 1000}'"
-    exposed_ports: ["5985","5986"]
-    published_ports: ["5985:5985","5986:5986"]
-    pre_build_image: true
-provisioner:
-  name: ansible
-  inventory:
-    host_vars:
-      instance:
-        ansible_user: 'bharat'
-        ansible_password: '8612'
-        ansible_connection: winrm
-        ansible_winrm_port: '5985'
-        ansible_winrm_scheme: 'http'
-        ansible_winrm_server_cert_validation: 'ignore'
-        ansible_host: '192.168.0.27'
+  - name: centos_os
+    image: centos:stream8
+  # - name: molecule-ubuntu
+  #   image: ubuntu:18.04
+  # - name: windows_core
+  #   image: mcr.microsoft.com/windows/servercore:ltsc2022
+  # - name: ubi8
+  #   image: registry.access.redhat.com/ubi8/ubi
+  # - name: ee-supported-rhel8
+  #   image: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8
 verifier:
   name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+
+# ---
+# dependency:
+#   name: galaxy
+# driver:
+#   name: docker
+# platforms:
+#   - name: instance
+#     image: mcr.microsoft.com/windows:ltsc2019
+#     docker_host: 'tcp://192.168.0.27:2375'
+#     command: "powershell 'while (1 -eq 1) {Start-Sleep -s 1000}'"
+#     exposed_ports: ["5985","5986"]
+#     published_ports: ["5985:5985","5986:5986"]
+#     pre_build_image: true
+# provisioner:
+#   name: ansible
+#   inventory:
+#     host_vars:
+#       instance:
+#         ansible_user: 'bharat'
+#         ansible_password: '8612'
+#         ansible_connection: winrm
+#         ansible_winrm_port: '5985'
+#         ansible_winrm_scheme: 'http'
+#         ansible_winrm_server_cert_validation: 'ignore'
+#         ansible_host: '192.168.0.27'
+# verifier:
+#   name: ansible
