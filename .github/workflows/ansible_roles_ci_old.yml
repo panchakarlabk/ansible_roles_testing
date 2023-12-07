@@ -1,57 +1,57 @@
-name: Ansible Lint test 
+# name: Ansible Lint test 
 
-"on":
-  push:
-    tags:
-      - "*"
-    branches:
-      - dev
+# "on":
+#   push:
+#     tags:
+#       - "*"
+#     branches:
+#       - dev
 
-jobs:
-  Finding_Ansible_Lint_Isuses:
-    runs-on: self-hosted 
-    outputs:
-      get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
+# jobs:
+#   Finding_Ansible_Lint_Isuses:
+#     runs-on: self-hosted 
+#     outputs:
+#       get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 2
 
       
-  Ansible_Lint_Fix:
-    runs-on: self-hosted 
-    needs: Finding_Ansible_Lint_Isuses
-    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
-    strategy:
-      matrix:
-        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
+#   Ansible_Lint_Fix:
+#     runs-on: self-hosted 
+#     needs: Finding_Ansible_Lint_Isuses
+#     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+#     strategy:
+#       matrix:
+#         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
   
-  Ansible_Lint_Fix_Qa_Branch:
-    runs-on: self-hosted 
-    needs: Ansible_Lint_Fix
-    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
-    strategy:
-      matrix:
-        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
+#   Ansible_Lint_Fix_Qa_Branch:
+#     runs-on: self-hosted 
+#     needs: Ansible_Lint_Fix
+#     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+#     strategy:
+#       matrix:
+#         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
 
-  Ansible_Lint_Fix_Prod_Branch:
-    runs-on: self-hosted 
-    needs: Ansible_Lint_Fix_Qa_Branch
-    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
-    strategy:
-      matrix:
-        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
+#   Ansible_Lint_Fix_Prod_Branch:
+#     runs-on: self-hosted 
+#     needs: Ansible_Lint_Fix_Qa_Branch
+#     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+#     strategy:
+#       matrix:
+#         value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
