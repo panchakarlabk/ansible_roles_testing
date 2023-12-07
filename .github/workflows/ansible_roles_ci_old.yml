@@ -1,12 +1,15 @@
-name: Molecule Testes on Push
+name: Ansible Lint test 
 
 "on":
   push:
+    tags:
+      - "*"
+    branches:
+      - dev
 
 jobs:
-  find_changed_roles:
+  Finding_Ansible_Lint_Isuses:
     runs-on: self-hosted 
-
     outputs:
       get_roles: ${{ steps.get_changed_paths.outputs.ansible_roles }}
 
@@ -16,24 +19,22 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Get Changed Files
-        id: get_changed
-        run: echo "::set-output name=files::$(git diff-tree --no-commit-id --name-only -r HEAD | xargs)"
-
-      - name: Get Changed Roles
-        id: get_changed_roles
-        run: echo "::set-output name=roles::$(for i in ${{ steps.get_changed.outputs.files }} ; do echo $i | grep 'roles/' | awk -F '/' '{print $1 "/" $2 "/"}'; done | sort | uniq | xargs )"
-
-      - name: Format, so GitHub Actions can list over an output list
-        id: get_changed_paths
-        run: |
-          content="[$(for l in ${{ steps.get_changed_roles.outputs.roles }} ; do echo \"$l\",; done )]"
-          echo "::set-output name=ansible_roles::$content"
-
-  molecule_tests:
+      
+  Ansible_Lint_Fix:
     runs-on: self-hosted 
-    needs: find_changed_roles
-    # Skip there is no change in any roles. Example change in a README.md
+    needs: Finding_Ansible_Lint_Isuses
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+    strategy:
+      matrix:
+        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+  
+  Ansible_Lint_Fix_Qa_Branch:
+    runs-on: self-hosted 
+    needs: Ansible_Lint_Fix
     if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
     strategy:
       matrix:
@@ -43,30 +44,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # - name: Install Python 3.9
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: "pypy3.9"
+  Ansible_Lint_Fix_Prod_Branch:
+    runs-on: self-hosted 
+    needs: Ansible_Lint_Fix_Qa_Branch
+    if: ${{ needs.find_changed_roles.outputs.get_roles != '[]' }}
+    strategy:
+      matrix:
+        value: ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
 
-      # - name: Install Ansible Python packages
-      #   run: pip3 install ansible molecule ansible-lint docker molecule[docker]
-     
-      - name: Change Dir 
-        run: cd /home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/
- 
-      - name: Changing virtuval Env
-        run: source /home/ansible/ansible_molecule/bin/activate
-      
-      - name: pwd
-        run: pwd
-
-      - name: ansible lint
-        run: ansible-lint
-
-      - name: Run Molecule tests
-        run: molecule test -s ${{ fromJSON(needs.find_changed_roles.outputs.get_roles) }}
-        # env:
-        #   PY_COLORS: "1"
-        #   ANSIBLE_FORCE_COLOR: "1"
-        # working-directory: '/home/ansible/actions-runner/_work/ansible_roles_testing/ansible_roles_testing/collections/ansible_collections/infra/lab/roles/httpd/'
-        # working-directory: ${{ matrix.value }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
